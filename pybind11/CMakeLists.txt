@@ -23,8 +23,8 @@ message(STATUS "Python3 and pybind11 processing")
 
 # --- Python detection: if several versions installed, select one with all the required packages installed
 
-set(PYTHON_PREFERED_VERSION "3.9" CACHE STRING "Select a Python version: it should be installed with all packages required for CloudCompare (pybind11, numpy)")
-set_property(CACHE PYTHON_PREFERED_VERSION PROPERTY STRINGS "3.9" "3.10" "3.11")
+set(PYTHON_PREFERED_VERSION "3.13" CACHE STRING "Select a Python version: it should be installed with all packages required for CloudCompare (pybind11, numpy)")
+set_property(CACHE PYTHON_PREFERED_VERSION PROPERTY STRINGS "3.9" "3.10" "3.11" "3.12" "3.13")
 
 message(STATUS "  python prefered version: " ${PYTHON_PREFERED_VERSION})
 
@@ -63,9 +63,36 @@ else()
     add_library( ${PROJECT_NAME} MODULE)
 endif()
 
-if (WIN32)
+if (OPTION_USE_QT6) 
+    if (WIN32)
+        target_link_libraries( ${PROJECT_NAME}
+        PUBLIC pybind11::module
+        PRIVATE
+        PYCC_LIB
+        CCAppCommon
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        Qt6::OpenGL
+        Qt6::PrintSupport
+        Qt6::WinMain
+        )
+    else()
+        target_link_libraries( ${PROJECT_NAME}
+        PUBLIC pybind11::module
+        PYCC_LIB
+        CCAppCommon
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        Qt6::OpenGL
+        Qt6::PrintSupport
+        )
+    endif()
+else()
+    if (WIN32)
     target_link_libraries( ${PROJECT_NAME}
-	PUBLIC pybind11::module
+    PUBLIC pybind11::module
     PRIVATE
     PYCC_LIB
     CCAppCommon
@@ -75,10 +102,10 @@ if (WIN32)
     Qt5::OpenGL
     Qt5::PrintSupport
     Qt5::WinMain
-	)
-else()
+    )
+    else()
     target_link_libraries( ${PROJECT_NAME}
-	PUBLIC pybind11::module
+    PUBLIC pybind11::module
     PYCC_LIB
     CCAppCommon
     Qt5::Core
@@ -86,7 +113,8 @@ else()
     Qt5::Widgets
     Qt5::OpenGL
     Qt5::PrintSupport
-	)
+    )
+    endif()
 endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY AUTOMOC ON)

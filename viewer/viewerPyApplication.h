@@ -29,7 +29,7 @@ class viewerPyApplication : public ccApplicationBase
 	Q_OBJECT
 	
 public:
-	viewerPyApplication( int &argc, char **argv, bool isCommandLine, QString appPath );
+	viewerPyApplication( int &argc, char **argv, bool isCommandLine, const QString& version );
 
 	void  setViewer( viewerPy *inViewer );
 	viewerPy* getViewer() { return mViewer; };

@@ -26,8 +26,8 @@
 #include <pyccTrace.h>
 
 
-viewerPyApplication::viewerPyApplication( int &argc, char **argv, bool isCommandLine, QString appPath )
-	: ccApplicationBase( argc, argv, isCommandLine, QStringLiteral( "1.40.0" ), appPath)
+viewerPyApplication::viewerPyApplication( int &argc, char **argv, bool isCommandLine, const QString& version )
+	: ccApplicationBase( argc, argv, isCommandLine, version, appPath)
 {
 	mViewer=nullptr;
 	setApplicationName( "CloudCompareViewer" );

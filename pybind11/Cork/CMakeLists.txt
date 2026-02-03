@@ -28,36 +28,67 @@ project( _Cork VERSION 0.1 )
 
 add_library( ${PROJECT_NAME} MODULE )
 
-if (WIN32)
-    target_link_libraries( ${PROJECT_NAME}
-	PUBLIC pybind11::module
-    PRIVATE
-    QCORK_PLUGIN
-    PYCC_LIB
-    CCAppCommon
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets
-    Qt5::OpenGL
-    Qt5::Concurrent
-    Qt5::PrintSupport
-    Qt5::WinMain
-    )
+if (OPTION_USE_QT6)
+    if (WIN32)
+        target_link_libraries( ${PROJECT_NAME}
+        PUBLIC pybind11::module
+        PRIVATE
+        QCORK_PLUGIN
+        PYCC_LIB
+        CCAppCommon
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        Qt6::OpenGL
+        Qt6::Concurrent
+        Qt6::PrintSupport
+        Qt6::WinMain
+        )
+    else()
+        target_link_libraries( ${PROJECT_NAME}
+        PUBLIC pybind11::module
+        QCORK_PLUGIN
+        PYCC_LIB
+        CCAppCommon
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        Qt6::OpenGL
+        Qt6::Concurrent
+        Qt6::PrintSupport
+        )
+    endif()
 else()
-    target_link_libraries( ${PROJECT_NAME}
-	PUBLIC pybind11::module
-    QCORK_PLUGIN
-    PYCC_LIB
-    CCAppCommon
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets
-    Qt5::OpenGL
-    Qt5::Concurrent
-    Qt5::PrintSupport
-    )
+    if (WIN32)
+        target_link_libraries( ${PROJECT_NAME}
+        PUBLIC pybind11::module
+        PRIVATE
+        QCORK_PLUGIN
+        PYCC_LIB
+        CCAppCommon
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
+        Qt5::OpenGL
+        Qt5::Concurrent
+        Qt5::PrintSupport
+        Qt5::WinMain
+        )
+    else()
+        target_link_libraries( ${PROJECT_NAME}
+        PUBLIC pybind11::module
+        QCORK_PLUGIN
+        PYCC_LIB
+        CCAppCommon
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
+        Qt5::OpenGL
+        Qt5::Concurrent
+        Qt5::PrintSupport
+        )
+    endif()
 endif()
-
 #set_property(TARGET ${PROJECT_NAME} PROPERTY AUTOMOC ON)
 
 target_sources( ${PROJECT_NAME}

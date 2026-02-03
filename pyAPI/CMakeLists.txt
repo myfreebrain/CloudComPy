@@ -97,9 +97,16 @@ endif()
 
 # Qt libraries
 
-target_link_libraries( PYCC_LIB
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets
-    )
-
+if (OPTION_USE_QT6) 
+    target_link_libraries( PYCC_LIB
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        )
+else()
+    target_link_libraries( PYCC_LIB
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
+        )
+endif()

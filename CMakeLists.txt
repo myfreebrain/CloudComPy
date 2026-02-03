@@ -19,29 +19,43 @@
 #                                                                        #
 ##########################################################################
 
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16)
 
 project( CloudCompareProjects )
 
 # specify the C++ standard: C++14 required for boost python (use of variable templates for some pointer functions)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+option(OPTION_USE_QT6 "Build with Qt6" ON)
+
+if (OPTION_USE_QT6)
+    find_package( Qt6
+        COMPONENTS
+            Concurrent
+            Core
+            Gui
+            OpenGL
+            PrintSupport
+            Svg
+            Widgets
+        REQUIRED
+    )
+else()
 # --- Qt5 detection
-
-find_package( Qt5
-    COMPONENTS
-        Concurrent
-        Core
-        Gui
-        OpenGL
-        OpenGLExtensions
-        PrintSupport
-        Svg
-        Widgets
-    REQUIRED
-)
-
+    find_package( Qt5
+        COMPONENTS
+            Concurrent
+            Core
+            Gui
+            OpenGL
+            OpenGLExtensions
+            PrintSupport
+            Svg
+            Widgets
+        REQUIRED
+    )
+endif()
 #find_package( FLANN REQUIRED )
 
 # Testing
@@ -81,7 +95,16 @@ if( PLUGIN_STANDARD_QM3C2 )
     message(STATUS "Plugin PLUGIN_STANDARD_QM3C2")
 endif()
 
-add_subdirectory( CloudCompare )
+option(OPTION_USE_EXTERNAL_CLOUDCOMPARE "Use external CloudCompare" ON)
+if(OPTION_USE_EXTERNAL_CLOUDCOMPARE)
+    find_package(CloudCompare REQUIRED)
+    find_package(CCCoreLib REQUIRED)
+    
+    message(STATUS "Found External CloudCompare: ${CloudCompare_DIR}")
+    message(STATUS "Found External CCCoreLib: ${CCCoreLib_DIR}")
+else()
+    add_subdirectory( CloudCompare )
+endif()
 add_subdirectory( viewer )
 add_subdirectory( pyAPI )
 add_subdirectory( pybind11 )
