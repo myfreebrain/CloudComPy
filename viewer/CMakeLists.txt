@@ -25,7 +25,7 @@ file( GLOB rc_list ${CMAKE_CURRENT_SOURCE_DIR}/../CloudCompare/qCC/*.rc )
 
 if (OPTION_USE_QT6) 
     qt6_wrap_ui( generated_ui_list ${ui_list} )
-    qt5_add_resources( generated_qrc_list ${qrc_list} )
+    qt6_add_resources( generated_qrc_list ${qrc_list} )
 else()
     qt5_wrap_ui( generated_ui_list ${ui_list} )
     qt5_add_resources( generated_qrc_list ${qrc_list} )
