@@ -27,7 +27,7 @@
 
 
 viewerPyApplication::viewerPyApplication( int &argc, char **argv, bool isCommandLine, const QString& version )
-	: ccApplicationBase( argc, argv, isCommandLine, version, appPath)
+	: ccApplicationBase( argc, argv, isCommandLine, version)
 {
 	mViewer=nullptr;
 	setApplicationName( "CloudCompareViewer" );
