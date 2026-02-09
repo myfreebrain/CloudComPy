@@ -39,6 +39,7 @@ if (OPTION_USE_QT6)
             PrintSupport
             Svg
             Widgets
+            Core5Compat
         REQUIRED
     )
 else()
