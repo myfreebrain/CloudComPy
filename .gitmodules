@@ -1,3 +1,4 @@
 [submodule "CloudCompare"]
 	path = CloudCompare
 	url = git@github.com:myfreebrain/CloudCompare.git
+	branch = master
