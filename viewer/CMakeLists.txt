@@ -34,7 +34,7 @@ endif()
 target_sources( ${PROJECT_NAME} PRIVATE ${generated_ui_list} ${generated_qrc_list} ${rc_list} )
 
 target_link_libraries( ${PROJECT_NAME}
-    CCAppCommon
+    CloudCompare::CCAppCommon
     )
     
 # Qt libraries

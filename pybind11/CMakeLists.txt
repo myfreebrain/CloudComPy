@@ -69,7 +69,7 @@ if (OPTION_USE_QT6)
         PUBLIC pybind11::module
         PRIVATE
         PYCC_LIB
-        CCAppCommon
+        CloudCompare::CCAppCommon
         Qt6::Core
         Qt6::Gui
         Qt6::Widgets
@@ -81,7 +81,7 @@ if (OPTION_USE_QT6)
         target_link_libraries( ${PROJECT_NAME}
         PUBLIC pybind11::module
         PYCC_LIB
-        CCAppCommon
+        CloudCompare::CCAppCommon
         Qt6::Core
         Qt6::Gui
         Qt6::Widgets
@@ -95,7 +95,7 @@ else()
     PUBLIC pybind11::module
     PRIVATE
     PYCC_LIB
-    CCAppCommon
+    CloudCompare::CCAppCommon
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets
@@ -107,7 +107,7 @@ else()
     target_link_libraries( ${PROJECT_NAME}
     PUBLIC pybind11::module
     PYCC_LIB
-    CCAppCommon
+    CloudCompare::CCAppCommon
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets

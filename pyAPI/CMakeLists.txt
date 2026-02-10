@@ -80,7 +80,7 @@ target_include_directories( PYCC_LIB PUBLIC
 
 target_link_libraries( PYCC_LIB
     viewerPy
-    CCAppCommon
+    CloudCompare::CCAppCommon
     )
 
 if( PLUGIN_IO_QFBX )
