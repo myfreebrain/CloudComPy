@@ -80,11 +80,15 @@ void setTraces_py(bool isActive)
 {
     if (isActive)
     {
+#ifdef _PYTHONAPI_DEBUG_        
         ccLogTrace::settrace(1);
+#endif        
     }
     else
     {
+#ifdef _PYTHONAPI_DEBUG_                
         ccLogTrace::settrace(0);
+#endif        
     }
 }
 
